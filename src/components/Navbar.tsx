@@ -26,7 +26,7 @@ const NavbarItem: INavbarItem[] = [
 
 function Navbar() {
   return (
-    <header className="header-area">
+    <nav className="header-area">
       <div className="navbar fixed top-0 left-0 right-0 z-50 bg-white shadow-lg border-none">
         <div className="navbar-start">
           <a className="btn btn-ghost normal-case text-xl">.Apk</a>
@@ -35,7 +35,7 @@ function Navbar() {
           <ul className="sm:flex hidden space-x-2">
             {NavbarItem.map((item, i) => {
               return (
-                <li>
+                <li key={i}>
                   <a>{item.title}</a>
                 </li>
               );
@@ -51,9 +51,9 @@ function Navbar() {
                 stroke="currentColor"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M4 6h16M4 12h16M4 18h7"
                 />
               </svg>
@@ -64,7 +64,7 @@ function Navbar() {
             >
               {NavbarItem.map((item, i) => {
                 return (
-                  <li>
+                  <li key={i}>
                     <a>{item.title}</a>
                   </li>
                 );
@@ -73,7 +73,7 @@ function Navbar() {
           </div>
         </div>
       </div>
-    </header>
+    </nav>
   );
 }
 
