@@ -1,19 +1,21 @@
+import { DataProduct } from "@/data/dummy/dataProducts";
+import { formatMoney } from "@/utils/formatMoney";
+import Link from "next/link";
 import React from "react";
 
-function CardProduct() {
+function CardProduct({ image, name, link, price }: DataProduct) {
   return (
-    <div className="card w-full shadow-xl">
-      <figure>
-        <img src="/images/Img-1.jpeg" alt="Shoes" />
-      </figure>
-      <div className="p-2">
-        <h2 className="font-semibold text-black">Shoes!</h2>
-        <p className="font-bold text-black">Rp.150.000</p>
-        <div className="card-actions justify-end">
-          <button className="btn btn-primary btn-sm">Buy Now</button>
+    <Link href={link}>
+      <div className="card w-full h-[380px] shadow-xl">
+        <figure className="w-full h-[200px] overflow-hidden">
+          <img src={image} alt={name} />
+        </figure>
+        <div className="p-4">
+          <h2 className="font-semibold text-black">{name}</h2>
+          <p className="font-bold text-black">Rp. {formatMoney(price)}</p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
