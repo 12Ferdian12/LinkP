@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useRouter } from "next/router";
 
 interface INavbarItem {
   title: string;
@@ -25,11 +26,35 @@ const NavbarItem: INavbarItem[] = [
 ];
 
 function Navbar() {
+  const router = useRouter();
+  const [searchKeyword, setSearchKeyword] = useState("");
+
+  const searchHandler = () => {
+    router.push({
+      pathname: "/search",
+      query: {
+        keyword: searchKeyword,
+      },
+    });
+  };
+
   return (
     <nav className="header-area">
       <div className="navbar fixed top-0 left-0 right-0 z-50 bg-white shadow-lg border-none">
         <div className="navbar-start">
           <a className="btn btn-ghost normal-case text-xl">.Apk</a>
+        </div>
+        <div className="navbar-center w-2/5">
+          <div className="form-control w-full">
+            <input
+              type="text"
+              value={searchKeyword}
+              placeholder="Search"
+              onChange={(e) => setSearchKeyword(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && searchHandler()}
+              className="input input-bordered bg-white md:w-auto border border-black rounded-full"
+            />
+          </div>
         </div>
         <div className="navbar-end">
           <ul className="sm:flex hidden space-x-2">
