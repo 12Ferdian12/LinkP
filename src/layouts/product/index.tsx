@@ -1,8 +1,12 @@
 import React from "react";
 import CardProduct from "@/components/cards/cardProduct";
-import { dataListProducts } from "@/data/dummy/dataProducts";
+import { DataProduct } from "@/data/dummy/dataProducts";
 
-function ProductListSection() {
+function ProductListSection({
+  dataListProducts,
+}: {
+  dataListProducts: DataProduct[];
+}) {
   return (
     <section className="px-[80px] space-y-5">
       <div className="font-bold text-3xl text-black">Products</div>

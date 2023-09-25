@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { DataProduct, dataListProducts } from "@/data/dummy/dataProducts";
 import CardProduct from "@/components/cards/cardProduct";
+import Head from "next/head";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import ProductListSection from "@/layouts/product";
 
 function searchPage() {
   const router = useRouter();
@@ -23,34 +27,35 @@ function searchPage() {
           .toLowerCase()
           .includes(keyword.toString().toLowerCase());
       });
+
       setData(data);
       delay();
     }
   }, [keyword]);
 
   return (
-    <div>
-      <h1>Search Page</h1>
-      {isLoading ? (
-        <div className="flex justify-center items-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
-        </div>
-      ) : data.length > 0 ? (
-        data.map((item, i) => {
-          return (
-            <CardProduct
-              image={item.image}
-              name={item.name}
-              price={item.price}
-              link={item.link}
-              key={i}
-            />
-          );
-        })
-      ) : (
-        <p>Not Found</p>
-      )}
-    </div>
+    <>
+      <>
+        <Head>
+          <title>Linkp</title>
+          <link rel="icon" type="image/x-icon" href="/images/map.svg" />
+        </Head>
+
+        <Navbar />
+        <main className="bg-slate-100 min-h-screen py-[70px] space-y-[80px]">
+          {isLoading ? (
+            <div className="flex justify-center items-center">
+              <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
+            </div>
+          ) : data.length > 0 ? (
+            <ProductListSection dataListProducts={data} />
+          ) : (
+            <p>Not Found</p>
+          )}
+        </main>
+        <Footer />
+      </>
+    </>
   );
 }
 

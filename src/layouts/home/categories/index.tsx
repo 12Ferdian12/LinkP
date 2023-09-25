@@ -107,8 +107,10 @@ function CategoriesSection() {
       <div className="font-bold text-3xl text-black">Categories</div>
       {/* end title section   */}
       <div className="grid grid-cols-12">
-        {categories.map((item, i) => {
-          return <CardCategories img={item.img} name={item.name} key={i} />;
+        {categories.map((category, i) => {
+          return (
+            <CardCategories img={category.img} name={category.name} key={i} />
+          );
         })}
       </div>
     </section>
